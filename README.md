@@ -92,7 +92,7 @@ mvn clean test -Pcucumber-regression-tests
 
 4. **Retry**: Implement this class in your TestNG test classes to enable test retry functionality.
 
-5. **TestData [calendar-test-data.json](src%2Ftest%2Fresources%2Fcalendar-test-data.json)taLoader**: Use this class to load test data from a JSON file for parameterized testing.
+5. **TestDataLoader [calendar-test-data.json](src%2Ftest%2Fresources%2Fcalendar-test-data.json)**: Use this class to load test data from a JSON file for parameterized testing.
 
 ## Author
 
