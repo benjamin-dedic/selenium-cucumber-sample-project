@@ -1,9 +1,17 @@
 HELP.md
 target/
 
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+# Ignore browser.json file
+browsers.json
+
+# Ignore Maven wrapper scripts
+mvnw
+mvnw.cmd
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+**/src/main/**/target/
+**/src/test/**/target/
 
 
 **/*.iml

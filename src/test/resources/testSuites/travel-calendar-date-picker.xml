@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Path2Usa Test Suite">
+  <parameter name="BROWSER" value="chrome" />
+  <parameter name="IMPLICIT_WAIT_TIMEOUT" value="10" />
+
+  <listeners>
+    <listener class-name="usa.airlines.path2usa.util.Listeners"/>
+  </listeners>
+
+  <test thread-count="5" name="Calendar Tests - Validation" preserve-order="true" verbose="2">
+    <classes>
+      <class name="usa.airlines.path2usa.travelcalendar.CalendarTravelDatePickerTest">
+        <methods>
+          <include name="verifyTodayDateIsHighlightedInCalendar"/>
+          <include name="verifyDepartureDatesAreDisabledBeforeTodayDate"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+
+  <test thread-count="5" name="Calendar Tests - Date Selection" preserve-order="true" verbose="2">
+    <classes>
+      <class name="usa.airlines.path2usa.travelcalendar.CalendarTravelDatePickerTest">
+        <methods>
+          <include name="selectDateOfTravel"/>
+        </methods>
+      </class>
+    </classes>
+  </test>
+
+  <test name="HomePage Calendar Tests" preserve-order="true" verbose="2">
+    <classes>
+      <class name="usa.airlines.path2usa.travelcalendar.page.HomePageCalendarTravelDate">
+        <methods/>
+      </class>
+    </classes>
+  </test>
+</suite>
