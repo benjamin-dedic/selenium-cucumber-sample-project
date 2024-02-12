@@ -11,7 +11,7 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import usa.airlines.path2usa.travelcalendar.BaseTest;
+import usa.airlines.path2usa.BaseTest;
 import usa.airlines.path2usa.travelcalendar.page.HomePageCalendarTravelDate;
 
 public class TravelDateCalendarPickerImpl extends BaseTest {
@@ -20,18 +20,17 @@ public class TravelDateCalendarPickerImpl extends BaseTest {
     @After
     public void afterScenario() {
         if (driver != null) {
-            driver.close();
+            driver.quit();
         }
     }
 
     @Given("I am on the Path2Usa page")
     public void i_landed_on_path2usa_page() {
         var browser = System.getProperty("BROWSER", BROWSER_CHROME);
-        var implicitWaitTimeout = Integer.parseInt(System.getProperty("IMPLICIT_WAIT_TIMEOUT", "10"));
         var isMobile = System.getProperty("IS_MOBILE", "false");
-        var isHeadless = System.getProperty("IS_HEADLESS", "false");
+        var isFilterNetworkEnabled = System.getProperty("FILTER_NETWORK", "false");
 
-        driver = createWebDriver(browser, BASE_URL, implicitWaitTimeout,Boolean.parseBoolean(isMobile),Boolean.parseBoolean(isHeadless));
+        driver = createWebDriver(browser,Boolean.parseBoolean(isMobile), Boolean.parseBoolean(isFilterNetworkEnabled));
     }
 
     @Given("I see the travel calendar")
@@ -50,7 +49,7 @@ public class TravelDateCalendarPickerImpl extends BaseTest {
     }
 
     @And("^I select the travel date (\\d+) (.+) (\\d+)$")
-    public void i_select_date_of_travel(int day, String month, int year) throws InterruptedException {
+    public void i_select_date_of_travel(int day, String month, int year) {
         HomePageCalendarTravelDate calendarTravelDate = new HomePageCalendarTravelDate(driver);
         selectDateOfTravelInCalendar(day, month, year, calendarTravelDate);
         calendarTravelDate.waitForElementToDisappear(calendarTravelDate.getCalendar());
@@ -107,7 +106,7 @@ public class TravelDateCalendarPickerImpl extends BaseTest {
         );
     }
 
-    private void selectDateOfTravelInCalendar(int day, String month, int year, HomePageCalendarTravelDate calendarTravelDate) throws InterruptedException {
+    private void selectDateOfTravelInCalendar(int day, String month, int year, HomePageCalendarTravelDate calendarTravelDate) {
         calendarTravelDate.chooseYearOfTheTravel(year);
         calendarTravelDate.chooseMonthOfTheTravel(month);
         calendarTravelDate.chooseDayOfTheTravel(day);

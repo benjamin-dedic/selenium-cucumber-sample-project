@@ -8,10 +8,9 @@ This is a sample Selenium-Cucumber project for automating calendar-related tests
 
 You can customize the test execution by passing global parameters while triggering tests using Maven. Here are the available parameters:
 
-- `BROWSER`: Specifies the browser to use for testing (default: `chrome`).
-- `IMPLICIT_WAIT_TIMEOUT`: Specifies the implicit wait timeout in seconds (default: `10`).
+- `BROWSER`: Specifies the browser to use for testing (options: `chrome`, `edge`, default: `chrome`).
 - `IS_MOBILE`: Specifies whether to run tests on a mobile device (`true` or `false`, default: `false`).
-- `IS_HEADLESS`: Specifies whether to run the browser in headless mode (`true` or `false`, default: `false`).
+- `FILTER_NETWORK`: Specifies whether to filter images from requests to speed up tests (`true` or `false`, default: `false`).
 
 ### Maven Profiles
 
@@ -29,8 +28,13 @@ Tests under 'selenium-regression-tests' profile are executed in parallel to opti
 To execute tests with a specific Maven profile and override default parameter values, use the following syntax:
 
 ```bash
-mvn clean test -Pselenium-regression-tests -DBROWSER=chrome -DIS_MOBILE=false
+mvn clean test -Pselenium-regression-tests
+mvn clean test -Pselenium-regression-tests -DBROWSER=chrome -DFILTER_NETWORK=true
+
 mvn clean test -Pcucumber-regression-tests
+mvn clean test -Pcucumber-regression-tests -DBROWSER=edge
+mvn clean test -Pcucumber-regression-tests -DBROWSER=chrome -DIS_MOBILE=true
+
 ```
 
 ## Project Structure

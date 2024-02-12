@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import usa.airlines.path2usa.travelcalendar.BaseTest;
+import usa.airlines.path2usa.BaseTest;
 
 @Slf4j
 public class Listeners extends BaseTest implements ITestListener {
@@ -18,7 +18,7 @@ public class Listeners extends BaseTest implements ITestListener {
     private WebDriver driver;
     ExtentTest test;
     ExtentReports extentReports = ExtentReportNG.getReportObject();
-    ThreadLocal<ExtentTest> extentTest = new ThreadLocal();
+    ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
 
     @Override
     public void onTestStart(ITestResult result) {

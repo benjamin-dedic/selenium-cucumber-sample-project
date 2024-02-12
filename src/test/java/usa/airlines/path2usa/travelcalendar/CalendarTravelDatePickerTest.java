@@ -3,6 +3,7 @@ package usa.airlines.path2usa.travelcalendar;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -14,6 +15,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import usa.airlines.path2usa.BaseTest;
 import usa.airlines.path2usa.travelcalendar.page.HomePageCalendarTravelDate;
 import usa.airlines.path2usa.util.Retry;
 import usa.airlines.path2usa.util.TestDataLoader;
@@ -25,12 +27,11 @@ public class CalendarTravelDatePickerTest extends BaseTest {
 
     @BeforeMethod
     public void setup() {
-        var browser = System.getProperty("BROWSER", "chrome");
-        var implicitWaitTimeout = Integer.parseInt(System.getProperty("IMPLICIT_WAIT_TIMEOUT", "10"));
+        var browser = System.getProperty("BROWSER", BROWSER_CHROME);
         var isMobile = System.getProperty("IS_MOBILE", "false");
-        var isHeadless = System.getProperty("IS_HEADLESS", "false");
+        var isFilterNetworkEnabled = System.getProperty("FILTER_NETWORK", "false");
 
-        driver = createWebDriver(browser, BASE_URL, implicitWaitTimeout,Boolean.parseBoolean(isMobile),Boolean.parseBoolean(isHeadless));
+        driver = createWebDriver(browser, Boolean.parseBoolean(isMobile), Boolean.parseBoolean(isFilterNetworkEnabled));
     }
 
     @AfterMethod
@@ -124,7 +125,7 @@ public class CalendarTravelDatePickerTest extends BaseTest {
         );
     }
 
-    private void selectDateOfTravelInCalendar(int day, String month, int year, HomePageCalendarTravelDate calendarTravelDate) throws InterruptedException {
+    private void selectDateOfTravelInCalendar(int day, String month, int year, HomePageCalendarTravelDate calendarTravelDate){
         calendarTravelDate.chooseYearOfTheTravel(year);
         calendarTravelDate.chooseMonthOfTheTravel(month);
         calendarTravelDate.chooseDayOfTheTravel(day);
